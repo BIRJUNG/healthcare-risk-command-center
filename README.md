@@ -2,6 +2,8 @@
 
 Portfolio project for healthcare data science and healthcare analytics roles.
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=https://github.com/BIRJUNG/healthcare-risk-command-center&branch=main&mainModule=streamlit_app.py)
+
 ## Project summary
 
 This project simulates a payer-side healthcare analytics workflow for risk adjustment, suspect member prioritization, and plan-level financial interpretation. It converts synthetic member demographics, utilization, chronic-condition signals, RAF scores, care gaps, member months, and actuarial value into an interactive Streamlit command center for documentation, coding, and provider outreach teams.
