@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import sys
+from textwrap import dedent
 
 import numpy as np
 import pandas as pd
@@ -622,52 +623,58 @@ def plot_layout(fig: go.Figure, height: int = 420) -> go.Figure:
 
 
 def status_card(label: str, value: str, caption: str, accent: str) -> str:
-    return f"""
+    return dedent(
+        f"""
     <div class="status-card" style="border-top: 2px solid {accent};">
         <div class="status-label">{label}</div>
         <div class="status-value">{value}</div>
         <div class="status-caption">{caption}</div>
     </div>
     """
+    ).strip()
 
 
 def section_card(title: str, body: str) -> None:
     st.markdown(
-        f"""
+        dedent(
+            f"""
         <div class="glass-card">
             <div class="section-title">{title}</div>
             <div class="small-copy">{body}</div>
         </div>
-        """,
+        """
+        ).strip(),
         unsafe_allow_html=True,
     )
 
 
 def action_card(title: str, body: str) -> None:
     st.markdown(
-        f"""
+        dedent(
+            f"""
         <div class="action-card">
             <div class="action-title"><span class="pulse-dot"></span>{title}</div>
             <div class="small-copy">{body}</div>
         </div>
-        """,
+        """
+        ).strip(),
         unsafe_allow_html=True,
     )
 
 
 def brand_links() -> str:
-    return f"""
-    <div class="brand-links">
-        <a class="brand-link" href="{LINKEDIN_URL}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a class="brand-link" href="{GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a class="brand-link" href="{REPO_URL}" target="_blank" rel="noopener noreferrer">Repo</a>
-    </div>
-    """
+    links = [
+        f'<a class="brand-link" href="{LINKEDIN_URL}" target="_blank" rel="noopener noreferrer">LinkedIn</a>',
+        f'<a class="brand-link" href="{GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>',
+        f'<a class="brand-link" href="{REPO_URL}" target="_blank" rel="noopener noreferrer">Repo</a>',
+    ]
+    return '<div class="brand-links">' + "".join(links) + "</div>"
 
 
 def sidebar_profile() -> None:
     st.sidebar.markdown(
-        f"""
+        dedent(
+            f"""
         <div class="profile-card">
             <div class="profile-top">
                 <div class="profile-avatar">BT</div>
@@ -685,14 +692,16 @@ def sidebar_profile() -> None:
                 <a class="brand-link" href="{GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
         </div>
-        """,
+        """
+        ).strip(),
         unsafe_allow_html=True,
     )
 
 
 def footer_brand() -> None:
     st.markdown(
-        f"""
+        dedent(
+            f"""
         <div class="footer-card">
             <div>
                 <div class="section-title">Built by {PROFILE_NAME}</div>
@@ -703,7 +712,8 @@ def footer_brand() -> None:
             </div>
             {brand_links()}
         </div>
-        """,
+        """
+        ).strip(),
         unsafe_allow_html=True,
     )
 
@@ -711,7 +721,8 @@ def footer_brand() -> None:
 def workflow_strip(review_stats: dict[str, float], filtered: pd.DataFrame) -> None:
     expected_suspects = review_stats["review_count"] * review_stats["review_precision"]
     st.markdown(
-        f"""
+        dedent(
+            f"""
         <div class="workflow-grid">
             <div class="workflow-step">
                 <div class="workflow-label">1. Segment</div>
@@ -729,7 +740,8 @@ def workflow_strip(review_stats: dict[str, float], filtered: pd.DataFrame) -> No
                 <div class="status-caption">${review_stats['net_value']:,.0f} modeled net value</div>
             </div>
         </div>
-        """,
+        """
+        ).strip(),
         unsafe_allow_html=True,
     )
 
@@ -1120,7 +1132,8 @@ best_metrics = model_metrics.iloc[0]
 action_title, action_body = next_best_action(filtered, provider_summary, review_stats)
 
 st.markdown(
-    f"""
+    dedent(
+        f"""
     <div class="hero-shell">
         <div class="brand-row">
             <div class="brand-left">
@@ -1145,19 +1158,22 @@ st.markdown(
             <div class="pill">Filtered members: {len(filtered):,}</div>
         </div>
     </div>
-    """,
+    """
+    ).strip(),
     unsafe_allow_html=True,
 )
 
 st.markdown(
-    f"""
+    dedent(
+        f"""
     <div class="status-grid">
         {status_card("Members in scope", f"{len(filtered):,}", "Filtered review population", ACCENT_BLUE)}
         {status_card("Suspect rate", f"{filtered[TARGET].mean():.1%}", "Baseline inside current filters", ACCENT_GREEN)}
         {status_card("Review volume", f"{review_stats['review_count']:,.0f}", f"{capacity_pct}% monthly capacity", ACCENT_GOLD)}
         {status_card("Net review value", f"${review_stats['net_value']:,.0f}", "Gross opportunity less review cost", ACCENT_PINK)}
     </div>
-    """,
+    """
+    ).strip(),
     unsafe_allow_html=True,
 )
 
