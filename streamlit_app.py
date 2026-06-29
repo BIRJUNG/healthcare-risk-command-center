@@ -47,6 +47,32 @@ TIER_COLORS = {
     "High": ACCENT_GOLD,
     "Critical": ACCENT_RED,
 }
+PRESET_CONFIG = {
+    "Executive overview": {
+        "capacity": 10,
+        "threshold": 0.0,
+        "tiers": ["Critical", "High", "Medium", "Monitor"],
+        "focus": "Full population performance and value view",
+    },
+    "Chart review sprint": {
+        "capacity": 8,
+        "threshold": 0.70,
+        "tiers": ["Critical", "High"],
+        "focus": "Highest-probability documentation review queue",
+    },
+    "Provider outreach": {
+        "capacity": 12,
+        "threshold": 0.50,
+        "tiers": ["Critical", "High", "Medium"],
+        "focus": "Provider groups with concentrated review opportunity",
+    },
+    "Care gap cleanup": {
+        "capacity": 15,
+        "threshold": 0.45,
+        "tiers": ["High", "Medium"],
+        "focus": "Operational care-gap follow-up population",
+    },
+}
 
 
 def apply_theme() -> None:
@@ -72,10 +98,11 @@ def apply_theme() -> None:
 
         .stApp {
             background:
-                radial-gradient(circle at 14% 12%, rgba(125, 211, 252, 0.18), transparent 28%),
-                radial-gradient(circle at 82% 4%, rgba(52, 211, 153, 0.13), transparent 30%),
-                radial-gradient(circle at 70% 80%, rgba(244, 114, 182, 0.10), transparent 34%),
+                linear-gradient(rgba(255,255,255,0.026) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px),
+                linear-gradient(120deg, rgba(125,211,252,0.10) 0%, transparent 28%, rgba(52,211,153,0.075) 54%, transparent 76%),
                 linear-gradient(135deg, #08090f 0%, #101119 48%, #0b1512 100%);
+            background-size: 34px 34px, 34px 34px, 100% 100%, 100% 100%;
         }
 
         .block-container {
@@ -109,6 +136,8 @@ def apply_theme() -> None:
         }
 
         .hero-shell {
+            position: relative;
+            overflow: hidden;
             border: 1px solid var(--line);
             background:
                 linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.035)),
@@ -118,6 +147,17 @@ def apply_theme() -> None:
             box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.18);
             backdrop-filter: blur(22px);
             margin-bottom: 1rem;
+            animation: fadeUp 560ms ease-out both;
+        }
+
+        .hero-shell::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.10) 45%, transparent 72%);
+            transform: translateX(-120%);
+            animation: sheen 6s ease-in-out infinite;
+            pointer-events: none;
         }
 
         .hero-topline {
@@ -160,6 +200,14 @@ def apply_theme() -> None:
             box-shadow: 0 18px 52px rgba(0, 0, 0, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(20px);
             min-height: 100%;
+            animation: fadeUp 520ms ease-out both;
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+        }
+
+        .status-card:hover, .glass-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(125, 211, 252, 0.34);
+            background: rgba(24, 28, 42, 0.78);
         }
 
         .status-label {
@@ -199,6 +247,79 @@ def apply_theme() -> None:
             color: var(--text);
             padding: 0.35rem 0.65rem;
             font-size: 0.82rem;
+        }
+
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin: 0.9rem 0 1rem;
+        }
+
+        .workflow-step {
+            position: relative;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.048);
+            border-radius: 8px;
+            padding: 0.95rem;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+            overflow: hidden;
+            animation: fadeUp 600ms ease-out both;
+        }
+
+        .workflow-step::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--blue);
+            animation: pulseLine 2.4s ease-in-out infinite;
+        }
+
+        .workflow-label {
+            color: var(--muted);
+            font-size: 0.76rem;
+            font-weight: 760;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .workflow-value {
+            color: var(--text);
+            font-size: 1.25rem;
+            font-weight: 760;
+            margin-top: 0.32rem;
+        }
+
+        .action-card {
+            border: 1px solid rgba(52, 211, 153, 0.28);
+            background:
+                linear-gradient(145deg, rgba(52, 211, 153, 0.12), rgba(125, 211, 252, 0.075)),
+                rgba(17, 19, 29, 0.76);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 18px 52px rgba(0, 0, 0, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+            animation: fadeUp 620ms ease-out both;
+        }
+
+        .action-title {
+            color: var(--text);
+            font-size: 1.05rem;
+            font-weight: 780;
+            margin-bottom: 0.4rem;
+        }
+
+        .pulse-dot {
+            display: inline-block;
+            width: 0.55rem;
+            height: 0.55rem;
+            margin-right: 0.45rem;
+            border-radius: 999px;
+            background: var(--green);
+            box-shadow: 0 0 0 rgba(52, 211, 153, 0.40);
+            animation: pulseDot 1.8s infinite;
         }
 
         .section-title {
@@ -254,6 +375,9 @@ def apply_theme() -> None:
             .status-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
+            .workflow-grid {
+                grid-template-columns: 1fr;
+            }
             .hero-title {
                 font-size: 2.2rem;
             }
@@ -265,6 +389,47 @@ def apply_theme() -> None:
             }
             .hero-shell {
                 padding: 1rem;
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes sheen {
+            0%, 45% {
+                transform: translateX(-120%);
+            }
+            70%, 100% {
+                transform: translateX(120%);
+            }
+        }
+
+        @keyframes pulseDot {
+            0% {
+                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.42);
+            }
+            70% {
+                box-shadow: 0 0 0 8px rgba(52, 211, 153, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+            }
+        }
+
+        @keyframes pulseLine {
+            0%, 100% {
+                opacity: 0.55;
+            }
+            50% {
+                opacity: 1;
             }
         }
         </style>
@@ -313,6 +478,75 @@ def section_card(title: str, body: str) -> None:
         </div>
         """,
         unsafe_allow_html=True,
+    )
+
+
+def action_card(title: str, body: str) -> None:
+    st.markdown(
+        f"""
+        <div class="action-card">
+            <div class="action-title"><span class="pulse-dot"></span>{title}</div>
+            <div class="small-copy">{body}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def workflow_strip(review_stats: dict[str, float], filtered: pd.DataFrame) -> None:
+    expected_suspects = review_stats["review_count"] * review_stats["review_precision"]
+    st.markdown(
+        f"""
+        <div class="workflow-grid">
+            <div class="workflow-step">
+                <div class="workflow-label">1. Segment</div>
+                <div class="workflow-value">{len(filtered):,} members in scope</div>
+                <div class="status-caption">Current market and risk filters</div>
+            </div>
+            <div class="workflow-step">
+                <div class="workflow-label">2. Prioritize</div>
+                <div class="workflow-value">{review_stats['review_count']:,.0f} reviews</div>
+                <div class="status-caption">{review_stats['lift']:.2f}x lift over baseline</div>
+            </div>
+            <div class="workflow-step">
+                <div class="workflow-label">3. Act</div>
+                <div class="workflow-value">{expected_suspects:,.0f} likely suspects</div>
+                <div class="status-caption">${review_stats['net_value']:,.0f} modeled net value</div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def next_best_action(filtered: pd.DataFrame, provider_summary: pd.DataFrame, review_stats: dict[str, float]) -> tuple[str, str]:
+    top_provider = provider_summary.iloc[0]
+    if review_stats["net_value"] <= 0:
+        return (
+            "Reduce review scope",
+            "The current review-cost assumption is higher than modeled value. Lower the review capacity or focus on Critical and High tiers first.",
+        )
+    if review_stats["lift"] >= 2.5:
+        return (
+            "Launch the prioritized review sprint",
+            (
+                f"Start with the top {review_stats['review_count']:,.0f} members. "
+                f"The queue has {review_stats['lift']:.2f}x lift and should capture "
+                f"{review_stats['capture_rate']:.1%} of known suspect members in scope."
+            ),
+        )
+    if top_provider["CriticalMembers"] > 0:
+        return (
+            "Start provider outreach",
+            (
+                f"Focus on {top_provider['ProviderGroup']}, which has "
+                f"{int(top_provider['CriticalMembers']):,} critical members and a "
+                f"{top_provider['SuspectRate']:.1%} suspect rate."
+            ),
+        )
+    return (
+        "Monitor and refresh",
+        f"The current segment has a {filtered[TARGET].mean():.1%} suspect rate. Keep it in monthly refresh until stronger risk signals appear.",
     )
 
 
@@ -404,6 +638,49 @@ def build_priority_chart(priority: pd.DataFrame) -> go.Figure:
     return plot_layout(fig, 390)
 
 
+def build_priority_mix(priority: pd.DataFrame) -> go.Figure:
+    priority = priority.copy()
+    priority["PriorityTier"] = priority["PriorityTier"].astype(str)
+    fig = px.pie(
+        priority,
+        names="PriorityTier",
+        values="Members",
+        hole=0.58,
+        color="PriorityTier",
+        color_discrete_map=TIER_COLORS,
+        title="Priority mix",
+        category_orders={"PriorityTier": ["Critical", "High", "Medium", "Monitor"]},
+    )
+    fig.update_traces(
+        textinfo="percent+label",
+        marker={"line": {"color": "rgba(255,255,255,0.20)", "width": 1}},
+        hovertemplate="%{label}<br>Members: %{value:,}<br>Share: %{percent}<extra></extra>",
+    )
+    return plot_layout(fig, 390)
+
+
+def build_review_funnel(filtered: pd.DataFrame, review_stats: dict[str, float]) -> go.Figure:
+    known_suspects = filtered[TARGET].sum()
+    reviewed_suspects = review_stats["review_count"] * review_stats["review_precision"]
+    values = [
+        len(filtered),
+        review_stats["review_count"],
+        reviewed_suspects,
+    ]
+    fig = go.Figure(
+        go.Funnel(
+            y=["Members in scope", "Selected for review", "Likely suspects"],
+            x=values,
+            textinfo="value+percent initial",
+            marker={"color": [ACCENT_BLUE, ACCENT_GOLD, ACCENT_GREEN]},
+            connector={"line": {"color": "rgba(255,255,255,0.22)", "width": 1}},
+            hovertemplate="%{y}: %{x:,.0f}<extra></extra>",
+        )
+    )
+    fig.update_layout(title=f"Review funnel from {known_suspects:,.0f} known suspects")
+    return plot_layout(fig, 390)
+
+
 def build_scatter(scored: pd.DataFrame) -> go.Figure:
     sample = scored.sample(min(len(scored), 1800), random_state=7) if len(scored) > 1800 else scored
     fig = px.scatter(
@@ -418,6 +695,31 @@ def build_scatter(scored: pd.DataFrame) -> go.Figure:
     )
     fig.update_traces(marker={"opacity": 0.72, "line": {"width": 0.5, "color": "rgba(255,255,255,0.24)"}})
     fig.update_yaxes(tickformat=".0%")
+    return plot_layout(fig, 430)
+
+
+def build_provider_heatmap(scored: pd.DataFrame) -> go.Figure:
+    tier_order = ["Critical", "High", "Medium", "Monitor"]
+    pivot = (
+        scored.assign(PriorityTier=scored["PriorityTier"].astype(str))
+        .pivot_table(
+            index="ProviderGroup",
+            columns="PriorityTier",
+            values="MemberID",
+            aggfunc="count",
+            fill_value=0,
+        )
+        .reindex(columns=tier_order, fill_value=0)
+    )
+    pivot = pivot.loc[pivot.sum(axis=1).sort_values(ascending=False).index]
+    fig = px.imshow(
+        pivot,
+        aspect="auto",
+        color_continuous_scale=["#111827", ACCENT_BLUE, ACCENT_GOLD, ACCENT_RED],
+        title="Provider workload heatmap",
+        labels={"x": "Priority tier", "y": "Provider group", "color": "Members"},
+    )
+    fig.update_traces(hovertemplate="%{y}<br>%{x}: %{z:,} members<extra></extra>")
     return plot_layout(fig, 430)
 
 
@@ -517,16 +819,30 @@ with st.sidebar:
     seed = st.number_input("Simulation seed", min_value=1, max_value=9999, value=42, step=1)
 
     st.markdown("---")
-    st.markdown("### Operations")
-    capacity_pct = st.slider("Monthly review capacity", min_value=1, max_value=25, value=10, step=1, format="%d%%")
+    st.markdown("### Workflow")
+    workflow_preset = st.selectbox("Quick preset", list(PRESET_CONFIG.keys()))
+    preset = PRESET_CONFIG[workflow_preset]
+    st.caption(preset["focus"])
+
+    st.markdown("### Fine tune")
+    capacity_pct = st.slider(
+        "Monthly review capacity",
+        min_value=1,
+        max_value=25,
+        value=preset["capacity"],
+        step=1,
+        format="%d%%",
+        key=f"capacity_{workflow_preset}",
+    )
     review_cost = st.slider("Chart review cost", min_value=25, max_value=300, value=85, step=5, format="$%d")
     probability_threshold = st.slider(
         "Minimum suspect probability",
         min_value=0.0,
         max_value=1.0,
-        value=0.0,
+        value=preset["threshold"],
         step=0.05,
         format="%.2f",
+        key=f"threshold_{workflow_preset}",
     )
 
 
@@ -548,7 +864,12 @@ with st.sidebar:
     regions = st.multiselect("Regions", region_options, default=region_options)
     plans = st.multiselect("Plans", plan_options, default=plan_options)
     providers = st.multiselect("Provider groups", provider_options, default=provider_options)
-    tiers = st.multiselect("Priority tiers", tier_options, default=tier_options)
+    tiers = st.multiselect(
+        "Priority tiers",
+        tier_options,
+        default=[tier for tier in preset["tiers"] if tier in tier_options],
+        key=f"tiers_{workflow_preset}",
+    )
     age_range = st.slider(
         "Age range",
         min_value=int(scored["Age"].min()),
@@ -580,6 +901,7 @@ transfer_summary = plan_transfer_table(filtered)
 review_stats = review_simulation(filtered, capacity_pct, float(review_cost))
 model_metrics = model_run.metrics.copy()
 best_metrics = model_metrics.iloc[0]
+action_title, action_body = next_best_action(filtered, provider_summary, review_stats)
 
 st.markdown(
     f"""
@@ -613,37 +935,35 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+workflow_strip(review_stats, filtered)
+action_card(action_title, action_body)
+st.markdown("")
+
 tabs = st.tabs(
     [
-        "Command Center",
-        "Review Queue",
-        "Provider Strategy",
-        "Financial Simulator",
-        "Model Explainability",
-        "Member Scenario",
+        "Start",
+        "Worklist",
+        "Providers",
+        "Value",
+        "Explain",
+        "Try a Member",
     ]
 )
 
 with tabs[0]:
-    left, right = st.columns([1.12, 0.88], gap="large")
-    with left:
+    top_left, top_mid, top_right = st.columns([1.05, 1.05, 0.9], gap="large")
+    with top_left:
+        st.plotly_chart(build_review_funnel(filtered, review_stats), width="stretch")
+    with top_mid:
         st.plotly_chart(build_priority_chart(priority_summary), width="stretch")
-    with right:
-        section_card(
-            "Operational focus",
-            (
-                f"The current filters produce a {filtered[TARGET].mean():.1%} suspect rate. "
-                f"Reviewing the top {capacity_pct}% creates {review_stats['lift']:.2f}x lift "
-                f"and captures {review_stats['capture_rate']:.1%} of known suspect members in scope."
-            ),
-        )
-        st.markdown("")
-        c1, c2 = st.columns(2)
-        c1.metric("Gross opportunity", f"${review_stats['gross_opportunity']:,.0f}")
-        c2.metric("Review cost", f"${review_stats['review_cost']:,.0f}")
-        c3, c4 = st.columns(2)
-        c3.metric("Review precision", f"{review_stats['review_precision']:.1%}")
-        c4.metric("Queue lift", f"{review_stats['lift']:.2f}x")
+    with top_right:
+        st.plotly_chart(build_priority_mix(priority_summary), width="stretch")
+
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Gross opportunity", f"${review_stats['gross_opportunity']:,.0f}")
+    c2.metric("Review cost", f"${review_stats['review_cost']:,.0f}")
+    c3.metric("Review precision", f"{review_stats['review_precision']:.1%}")
+    c4.metric("Queue lift", f"{review_stats['lift']:.2f}x")
 
     st.plotly_chart(build_scatter(filtered), width="stretch")
 
@@ -716,6 +1036,7 @@ with tabs[2]:
         st.metric("Provider members", f"{len(provider_members):,}")
         st.metric("Provider suspect rate", f"{provider_members[TARGET].mean():.1%}")
 
+    st.plotly_chart(build_provider_heatmap(filtered), width="stretch")
     st.dataframe(provider_summary.round(3), width="stretch", hide_index=True)
 
 with tabs[3]:

@@ -44,9 +44,10 @@ The model turns member-level data into a prioritized worklist. The highest 3% of
 
 The app is designed as a modern dark glass healthcare operations cockpit. It gives users the ability to:
 
+- Start from quick workflow presets for executive overview, chart review, provider outreach, or care-gap cleanup.
 - Filter by region, plan, provider group, age range, priority tier, and suspect probability.
 - Adjust monthly chart-review capacity and per-review cost.
-- See net review value, queue lift, review precision, and suspect capture.
+- See guided next-best-action recommendations, net review value, queue lift, review precision, and suspect capture.
 - Download the current worklist for risk adjustment operations.
 - Inspect provider group concentration and plan-level transfer exposure.
 - Explain model drivers and score a single member scenario interactively.
