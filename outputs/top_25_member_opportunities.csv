@@ -1,0 +1,26 @@
+MemberID,ProviderGroup,Region,PlanID,Age,ChronicCount,RAF_Score,PaidClaimsPMPM,CareGapCount,SuspectProbability,PriorityTier,EstimatedOpportunityPMPM
+103224,Cedar Health,West,PlanA_Silver,84,4,2.46,4143.76,2,0.9936860295291295,Critical,213.89
+100213,Harbor Physicians,South,PlanA_Silver,58,3,1.515,4424.55,1,0.992131293478163,Critical,131.52
+103710,Frontier Health,Northeast,PlanA_Silver,60,4,2.059,1660.7,3,0.9896660011355747,Critical,178.3
+100408,BayCare Network,West,PlanA_Silver,57,3,1.641,1729.46,6,0.9894222797062352,Critical,142.07
+102895,Frontier Health,West,PlanB_Gold,77,3,1.789,2194.03,4,0.9875947292284826,Critical,176.68
+102970,Frontier Health,Midwest,PlanB_Gold,68,3,1.574,2719.61,3,0.9873471887705093,Critical,155.41
+100263,Harbor Physicians,West,PlanC_Bronze,72,4,1.981,2432.32,1,0.9836945024361354,Critical,146.15
+102003,Evergreen Clinic,South,PlanA_Silver,56,3,1.585,2481.87,2,0.9831842219695199,Critical,136.36
+100041,BayCare Network,Northeast,PlanA_Silver,37,3,1.584,2590.47,2,0.9824385200002975,Critical,136.17
+102987,Harbor Physicians,South,PlanA_Silver,56,2,0.979,2761.69,3,0.9824013093108136,Critical,84.15
+103206,Delta IPA,West,PlanC_Bronze,84,3,1.965,3315.68,3,0.9823503655699427,Critical,144.77
+104630,Golden Valley,West,PlanA_Silver,33,2,1.007,1989.3,4,0.9792376631848848,Critical,86.28
+101509,Evergreen Clinic,South,PlanA_Silver,50,2,1.019,1643.45,5,0.9785594510274103,Critical,87.25
+104261,Alpha Medical Group,Northeast,PlanA_Silver,90,3,1.842,4254.8,0,0.9767742352858153,Critical,157.43
+103845,Evergreen Clinic,Midwest,PlanB_Gold,44,2,1.279,1983.98,4,0.9761299169205605,Critical,124.85
+102139,BayCare Network,Northeast,PlanA_Silver,55,2,1.062,2152.64,4,0.9741529466096371,Critical,90.52
+100782,Delta IPA,Midwest,PlanA_Silver,38,2,1.113,1946.07,3,0.9736613817506704,Critical,94.82
+102002,Evergreen Clinic,Northeast,PlanC_Bronze,49,3,1.558,1623.47,4,0.973073666182839,Critical,113.7
+102467,BayCare Network,South,PlanB_Gold,53,2,0.907,1379.66,4,0.9726956303028583,Critical,88.22
+104721,Harbor Physicians,South,PlanA_Silver,66,2,1.396,2583.96,2,0.9710077070107714,Critical,118.61
+104750,Harbor Physicians,West,PlanA_Silver,90,2,1.406,3782.38,1,0.9702207812090914,Critical,119.36
+100569,Golden Valley,South,PlanB_Gold,33,2,1.258,1877.29,4,0.9690115080918104,Critical,121.9
+104445,Cedar Health,Midwest,PlanA_Silver,47,3,1.798,1794.43,1,0.9683187393132777,Critical,152.34
+101765,Frontier Health,West,PlanA_Silver,65,3,1.903,2473.26,2,0.967952899890313,Critical,161.18
+102054,Alpha Medical Group,Midwest,PlanA_Silver,63,3,1.885,3128.44,1,0.9676531575214902,Critical,159.6

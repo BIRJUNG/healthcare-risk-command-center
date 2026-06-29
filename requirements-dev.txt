@@ -1,0 +1,8 @@
+-r requirements.txt
+matplotlib
+seaborn
+scipy
+statsmodels
+nbformat
+nbclient
+jupyter
