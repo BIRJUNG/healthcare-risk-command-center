@@ -47,6 +47,13 @@ TIER_COLORS = {
     "High": ACCENT_GOLD,
     "Critical": ACCENT_RED,
 }
+PROFILE_NAME = "Birjung Thapa"
+PROFILE_TITLE = "Data Scientist | Healthcare Analytics | ML"
+PROFILE_LOCATION = "Sacramento, California"
+LINKEDIN_URL = "https://www.linkedin.com/in/birjungthapa"
+GITHUB_URL = "https://github.com/BIRJUNG"
+REPO_URL = "https://github.com/BIRJUNG/healthcare-risk-command-center"
+PROJECT_TAGLINE = "Healthcare risk adjustment analytics built for decision-ready operations."
 PRESET_CONFIG = {
     "Executive overview": {
         "capacity": 10,
@@ -158,6 +165,79 @@ def apply_theme() -> None:
             transform: translateX(-120%);
             animation: sheen 6s ease-in-out infinite;
             pointer-events: none;
+        }
+
+        .brand-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 0;
+        }
+
+        .brand-mark {
+            width: 2.65rem;
+            height: 2.65rem;
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            color: var(--text);
+            font-weight: 800;
+            letter-spacing: 0;
+            background: linear-gradient(135deg, rgba(125,211,252,0.28), rgba(52,211,153,0.18));
+            border: 1px solid rgba(255,255,255,0.18);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 12px 26px rgba(0,0,0,0.24);
+        }
+
+        .brand-name {
+            color: var(--text);
+            font-size: 0.98rem;
+            font-weight: 760;
+            line-height: 1.2;
+        }
+
+        .brand-subtitle {
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.25;
+            margin-top: 0.1rem;
+        }
+
+        .brand-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 0.45rem;
+        }
+
+        .brand-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 2.1rem;
+            padding: 0.35rem 0.7rem;
+            border: 1px solid rgba(125, 211, 252, 0.28);
+            background: rgba(255, 255, 255, 0.055);
+            border-radius: 8px;
+            color: var(--text) !important;
+            font-size: 0.82rem;
+            text-decoration: none !important;
+            transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+        }
+
+        .brand-link:hover {
+            transform: translateY(-1px);
+            border-color: rgba(52, 211, 153, 0.42);
+            background: rgba(125, 211, 252, 0.12);
         }
 
         .hero-topline {
@@ -322,6 +402,81 @@ def apply_theme() -> None:
             animation: pulseDot 1.8s infinite;
         }
 
+        .profile-card {
+            border: 1px solid rgba(255,255,255,0.13);
+            background:
+                linear-gradient(145deg, rgba(125,211,252,0.11), rgba(52,211,153,0.07)),
+                rgba(17, 19, 29, 0.78);
+            border-radius: 8px;
+            padding: 0.95rem;
+            margin-bottom: 1rem;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 14px 34px rgba(0,0,0,0.22);
+        }
+
+        .profile-top {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .profile-avatar {
+            width: 2.8rem;
+            height: 2.8rem;
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            color: var(--text);
+            font-weight: 800;
+            background: linear-gradient(135deg, rgba(125,211,252,0.30), rgba(244,114,182,0.18));
+            border: 1px solid rgba(255,255,255,0.18);
+        }
+
+        .profile-name {
+            color: var(--text);
+            font-weight: 780;
+            line-height: 1.2;
+        }
+
+        .profile-title {
+            color: var(--muted);
+            font-size: 0.78rem;
+            line-height: 1.25;
+            margin-top: 0.1rem;
+        }
+
+        .profile-meta {
+            color: var(--muted);
+            font-size: 0.8rem;
+            line-height: 1.45;
+            margin-bottom: 0.75rem;
+        }
+
+        .profile-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.45rem;
+        }
+
+        .footer-card {
+            margin-top: 1.2rem;
+            border: 1px solid var(--line);
+            background: rgba(17, 19, 29, 0.72);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            box-shadow: 0 18px 52px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+
+        .footer-copy {
+            color: var(--muted);
+            font-size: 0.88rem;
+            line-height: 1.45;
+        }
+
         .section-title {
             color: var(--text);
             font-size: 1.08rem;
@@ -377,6 +532,13 @@ def apply_theme() -> None:
             }
             .workflow-grid {
                 grid-template-columns: 1fr;
+            }
+            .brand-row, .footer-card {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+            .brand-links {
+                justify-content: flex-start;
             }
             .hero-title {
                 font-size: 2.2rem;
@@ -487,6 +649,59 @@ def action_card(title: str, body: str) -> None:
         <div class="action-card">
             <div class="action-title"><span class="pulse-dot"></span>{title}</div>
             <div class="small-copy">{body}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def brand_links() -> str:
+    return f"""
+    <div class="brand-links">
+        <a class="brand-link" href="{LINKEDIN_URL}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="brand-link" href="{GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="brand-link" href="{REPO_URL}" target="_blank" rel="noopener noreferrer">Repo</a>
+    </div>
+    """
+
+
+def sidebar_profile() -> None:
+    st.sidebar.markdown(
+        f"""
+        <div class="profile-card">
+            <div class="profile-top">
+                <div class="profile-avatar">BT</div>
+                <div>
+                    <div class="profile-name">{PROFILE_NAME}</div>
+                    <div class="profile-title">{PROFILE_TITLE}</div>
+                </div>
+            </div>
+            <div class="profile-meta">
+                {PROFILE_LOCATION}<br>
+                {PROJECT_TAGLINE}
+            </div>
+            <div class="profile-links">
+                <a class="brand-link" href="{LINKEDIN_URL}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a class="brand-link" href="{GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def footer_brand() -> None:
+    st.markdown(
+        f"""
+        <div class="footer-card">
+            <div>
+                <div class="section-title">Built by {PROFILE_NAME}</div>
+                <div class="footer-copy">
+                    {PROFILE_TITLE}. This project demonstrates healthcare domain analytics,
+                    model-driven prioritization, and operations-focused product thinking.
+                </div>
+            </div>
+            {brand_links()}
         </div>
         """,
         unsafe_allow_html=True,
@@ -812,6 +1027,7 @@ def scenario_action(probability: float, care_gaps: int, prior_hcc: int, new_dx: 
 
 
 apply_theme()
+sidebar_profile()
 
 with st.sidebar:
     st.markdown("### Simulation")
@@ -906,6 +1122,16 @@ action_title, action_body = next_best_action(filtered, provider_summary, review_
 st.markdown(
     f"""
     <div class="hero-shell">
+        <div class="brand-row">
+            <div class="brand-left">
+                <div class="brand-mark">BT</div>
+                <div>
+                    <div class="brand-name">{PROFILE_NAME}</div>
+                    <div class="brand-subtitle">{PROFILE_TITLE} | {PROFILE_LOCATION}</div>
+                </div>
+            </div>
+            {brand_links()}
+        </div>
         <div class="hero-topline">Healthcare payer analytics command center</div>
         <h1 class="hero-title">Risk adjustment review queue</h1>
         <div class="hero-copy">
@@ -1162,3 +1388,5 @@ with tabs[5]:
         width="stretch",
         hide_index=True,
     )
+
+footer_brand()
